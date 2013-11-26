@@ -1,4 +1,6 @@
 Textrv::Application.routes.draw do
+  resources :systems
+
   resources :properties
 
   resources :entities

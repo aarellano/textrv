@@ -12,6 +12,8 @@ entities.concat Entity.create([{ name: 'Person', model: models[4] }])
 
 entities.concat Entity.create([{ name: 'Calendar', model: models[5] }, { name: 'Time', model: models[5] }])
 
+entities.concat Entity.create([{ name: 'Aircraft', model: models[2] }])
+
 properties = Property.create([
 { name: 'Rainfall Rat', entity: entities[0] },
 { name: 'Wind Speed', entity: entities[0] },
@@ -94,3 +96,5 @@ properties = Property.create([
 { name: 'Hour', entity: entities[18] },
 { name: 'Minute', entity: entities[18] },
 { name: 'Second', entity: entities[18] }])
+
+properties.concat Property.create([{ name: 'Engines', entity: entities[19] }, { name: 'Wings', entity: entities[19] }])
