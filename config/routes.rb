@@ -1,4 +1,10 @@
 Textrv::Application.routes.draw do
+  resources :properties
+
+  resources :entities
+
+  resources :mymodels
+
   resources :systems
 
   # The priority is based upon order of creation: first created -> highest priority.
