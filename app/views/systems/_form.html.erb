@@ -1,14 +1,4 @@
-<%= form_for @system, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field', autofocus: true %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                systems_path, :class => 'btn' %>
-  </div>
+<%= semantic_form_for @system do |f| %>
+  <%= f.inputs %>
+  <%= f.actions %>
 <% end %>

@@ -41,6 +41,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'formtastic-bootstrap'
 	gem 'railroady'
 end
 

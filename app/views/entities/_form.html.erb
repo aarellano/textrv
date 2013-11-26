@@ -1,20 +1,7 @@
-<%= form_for @entity, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :system_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :system_id, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                entities_path, :class => 'btn' %>
-  </div>
+<%= semantic_form_for @entity do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :system %>
+  <% end %>
+  <%= f.actions %>
 <% end %>
