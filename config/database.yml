@@ -1,0 +1,49 @@
+<%
+  def boxen?; ENV['BOXEN_HOME']; end
+
+  socket = [
+    ENV["BOXEN_MYSQL_SOCKET"],
+    "/var/run/mysql5/mysqld.sock",
+    "/tmp/mysql.sock"
+  ].compact.detect { |f| File.exist? f }
+
+  port = ENV["BOXEN_MYSQL_PORT"] || "3306"
+%>
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: textrv_dev
+  pool: 5
+  username: <%= ENV['DEV_DB_USER'] %>
+  <% if socket %>
+  host: localhost
+  socket: <%= socket %>
+  <% else %>
+  host: 127.0.0.1
+  port: <%= port %>
+  <% end %>
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: textrv_test
+  pool: 5
+  username: <%= ENV['DEV_DB_USER'] %>
+  <% if socket %>
+  host: localhost
+  socket: <%= socket %>
+  <% else %>
+  host: 127.0.0.1
+  port: <%= port %>
+  <% end %>
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: textrv_prod
+  pool: 5
+  username: <%= ENV['PROD_DB_USER'] %>
+  password: <%= ENV['PROD_DB_PASSWD'] %>
+  host: <%= ENV['PROD_DB_HOST'] %>
