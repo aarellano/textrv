@@ -1,7 +1,96 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+systems = System.create([{ name: 'Weather' }, { name: 'Electricity' }, { name: 'Transportation' }, { name: 'Geography' }, { name: 'Human' }, { name: 'Time' } ])
+
+entities = Entity.create([ { name: 'Hurricane', system: systems[0] }, { name: 'Blizzard', system: systems[0] } ])
+
+entities.concat Entity.create([{ name: 'Distribution Line', system: systems[1] }, { name: 'Power Substation', system: systems[1] }, { name: 'Utility Pole', system: systems[1] }, { name: 'Transformer', system: systems[1] }, { name: 'Generating Station', system: systems[1] }, { name: 'Generating Step Up Transformer', system: systems[1] }, { name: 'Generating Step Down Transformer', system: systems[1] }])
+
+entities.concat Entity.create([{ name: 'Track', system: systems[2] }, { name: 'Station', system: systems[2] }, { name: 'Rail Line', system: systems[2] }, { name: 'Train', system: systems[2] }, { name: 'Route', system: systems[2] }])
+
+entities.concat Entity.create([{ name: 'Location', system: systems[3] }, { name: 'Elevation', system: systems[3] }])
+
+entities.concat Entity.create([{ name: 'Person', system: systems[4] }])
+
+entities.concat Entity.create([{ name: 'Calendar', system: systems[5] }, { name: 'Time', system: systems[5] }])
+
+properties = Property.create([
+{ name: 'Rainfall Rat', entity: entities[0] },
+{ name: 'Wind Speed', entity: entities[0] },
+{ name: 'Duration', entity: entities[0] },
+{ name: 'Storm Surge', entity: entities[0] },
+{ name: 'Snowfall Rate', entity: entities[1] },
+{ name: 'Wind Speed', entity: entities[1] },
+{ name: 'Visibility', entity: entities[1] },
+{ name: 'Temperature', entity: entities[1] },
+{ name: 'Duration', entity: entities[1] },
+{ name: 'Status', entity: entities[2] },
+{ name: 'Source', entity: entities[2] },
+{ name: 'Destination', entity: entities[2] },
+{ name: 'Capacity', entity: entities[2] },
+{ name: 'Elevation', entity: entities[2] },
+{ name: 'AboveGround', entity: entities[2] },
+{ name: 'Status', entity: entities[3] },
+{ name: 'Location', entity: entities[3] },
+{ name: 'Capacity', entity: entities[3] },
+{ name: 'Location', entity: entities[4] },
+{ name: 'Distribution Line', entity: entities[4] },
+{ name: 'Status', entity: entities[4] },
+{ name: 'Status', entity: entities[5] },
+{ name: 'Power Produced', entity: entities[6] },
+{ name: 'Location', entity: entities[6] },
+{ name: 'Fueled B', entity: entities[6] },
+{ name: 'Status', entity: entities[6] },
+{ name: 'Location', entity: entities[7] },
+{ name: 'Max Load', entity: entities[7] },
+{ name: 'Status', entity: entities[7] },
+{ name: 'Input:output Voltage Ratio', entity: entities[7] },
+{ name: 'Input:Output Voltage Ratio', entity: entities[8] },
+{ name: 'Max Load', entity: entities[8] },
+{ name: 'Status', entity: entities[8] },
+{ name: 'Location', entity: entities[8] },
+{ name: 'Rail Line', entity: entities[9] },
+{ name: 'Station', entity: entities[9] },
+{ name: 'Station', entity: entities[9] },
+{ name: 'Electricity Available', entity: entities[9] },
+{ name: 'Electrified By', entity: entities[9] },
+{ name: 'Elevatiob', entity: entities[9] },
+{ name: 'AboveGround', entity: entities[9] },
+{ name: 'Electrified', entity: entities[9] },
+{ name: 'Water Accumulation', entity: entities[9] },
+{ name: 'Snow Accumulation', entity: entities[9] },
+{ name: 'Status', entity: entities[9] },
+{ name: 'Distance', entity: entities[9] },
+{ name: 'Location', entity: entities[10] },
+{ name: 'Service Rate', entity: entities[10] },
+{ name: 'Rail Line', entity: entities[10] },
+{ name: 'Elevation', entity: entities[10] },
+{ name: 'AboveGround', entity: entities[10] },
+{ name: 'Electrified By', entity: entities[10] },
+{ name: 'Electricity Required', entity: entities[10] },
+{ name: 'Color', entity: entities[11] },
+{ name: 'Track List', entity: entities[11] },
+{ name: 'Station List', entity: entities[11] },
+{ name: 'Track Location', entity: entities[12] },
+{ name: 'Station Location', entity: entities[12] },
+{ name: 'Route', entity: entities[12] },
+{ name: 'Speed', entity: entities[12] },
+{ name: 'Conductor', entity: entities[12] },
+{ name: 'Capacity ', entity: entities[12] },
+{ name: 'Status', entity: entities[12] },
+{ name: 'Electricity Required', entity: entities[12] },
+{ name: 'Rail Line', entity: entities[13] },
+{ name: 'Station Arrival Time', entity: entities[13] },
+{ name: 'Train', entity: entities[13] },
+{ name: 'Longitude', entity: entities[14] },
+{ name: 'Lattitude', entity: entities[14] },
+{ name: 'FtAboveSeaLevel', entity: entities[15] },
+{ name: 'Visibility ', entity: entities[16] },
+{ name: 'Name', entity: entities[16] },
+{ name: 'Height', entity: entities[16] },
+{ name: 'Weight', entity: entities[16] },
+{ name: 'Gender', entity: entities[16] },
+{ name: 'Month', entity: entities[17] },
+{ name: 'Day', entity: entities[17] },
+{ name: 'Year', entity: entities[17] },
+{ name: 'Hour', entity: entities[18] },
+{ name: 'Minute', entity: entities[18] },
+{ name: 'Second', entity: entities[18] }])
