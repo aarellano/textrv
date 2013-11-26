@@ -7,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:system_id) %></th>
+      <th><%= model_class.human_attribute_name(:model_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to entity.id, entity_path(entity) %></td>
         <td><%= entity.name %></td>
-        <td><%= entity.system_id %></td>
+        <td><%= entity.model_id %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_entity_path(entity), :class => 'btn btn-mini' %>

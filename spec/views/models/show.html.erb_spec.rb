@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "systems/show" do
+describe "models/show" do
   before(:each) do
-    @system = assign(:system, stub_model(System,
+    @model = assign(:model, stub_model(Model,
       :name => "Name"
     ))
   end

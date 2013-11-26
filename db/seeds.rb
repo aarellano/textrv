@@ -1,16 +1,16 @@
-systems = System.create([{ name: 'Weather' }, { name: 'Electricity' }, { name: 'Transportation' }, { name: 'Geography' }, { name: 'Human' }, { name: 'Time' } ])
+models = Model.create([{ name: 'Weather' }, { name: 'Electricity' }, { name: 'Transportation' }, { name: 'Geography' }, { name: 'Human' }, { name: 'Time' } ])
 
-entities = Entity.create([ { name: 'Hurricane', system: systems[0] }, { name: 'Blizzard', system: systems[0] } ])
+entities = Entity.create([ { name: 'Hurricane', model: models[0] }, { name: 'Blizzard', model: models[0] } ])
 
-entities.concat Entity.create([{ name: 'Distribution Line', system: systems[1] }, { name: 'Power Substation', system: systems[1] }, { name: 'Utility Pole', system: systems[1] }, { name: 'Transformer', system: systems[1] }, { name: 'Generating Station', system: systems[1] }, { name: 'Generating Step Up Transformer', system: systems[1] }, { name: 'Generating Step Down Transformer', system: systems[1] }])
+entities.concat Entity.create([{ name: 'Distribution Line', model: models[1] }, { name: 'Power Substation', model: models[1] }, { name: 'Utility Pole', model: models[1] }, { name: 'Transformer', model: models[1] }, { name: 'Generating Station', model: models[1] }, { name: 'Generating Step Up Transformer', model: models[1] }, { name: 'Generating Step Down Transformer', model: models[1] }])
 
-entities.concat Entity.create([{ name: 'Track', system: systems[2] }, { name: 'Station', system: systems[2] }, { name: 'Rail Line', system: systems[2] }, { name: 'Train', system: systems[2] }, { name: 'Route', system: systems[2] }])
+entities.concat Entity.create([{ name: 'Track', model: models[2] }, { name: 'Station', model: models[2] }, { name: 'Rail Line', model: models[2] }, { name: 'Train', model: models[2] }, { name: 'Route', model: models[2] }])
 
-entities.concat Entity.create([{ name: 'Location', system: systems[3] }, { name: 'Elevation', system: systems[3] }])
+entities.concat Entity.create([{ name: 'Location', model: models[3] }, { name: 'Elevation', model: models[3] }])
 
-entities.concat Entity.create([{ name: 'Person', system: systems[4] }])
+entities.concat Entity.create([{ name: 'Person', model: models[4] }])
 
-entities.concat Entity.create([{ name: 'Calendar', system: systems[5] }, { name: 'Time', system: systems[5] }])
+entities.concat Entity.create([{ name: 'Calendar', model: models[5] }, { name: 'Time', model: models[5] }])
 
 properties = Property.create([
 { name: 'Rainfall Rat', entity: entities[0] },
