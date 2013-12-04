@@ -14,6 +14,10 @@
   <% @system.entity.properties.each do |prop| %>
     <dd><%= prop.name %>
   <% end %>
+  <dt><strong><%= model_class.human_attribute_name(:system_requirements) %>:</strong></dt>
+  <% @system.system_requirements.each do |req| %>
+    <dd><%= req.title %></dd>
+  <% end %>
 
 </dl>
 
