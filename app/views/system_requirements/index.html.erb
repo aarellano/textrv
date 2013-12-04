@@ -1,31 +1,40 @@
-<h1>Listing system_requirements</h1>
-
-<table>
+<%- model_class = SystemRequirement -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>System</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:system_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @system_requirements.each do |system_requirement| %>
       <tr>
+        <td><%= link_to system_requirement.id, system_requirement_path(system_requirement) %></td>
         <td><%= system_requirement.title %></td>
         <td><%= system_requirement.description %></td>
         <td><%= system_requirement.system_id %></td>
-        <td><%= link_to 'Show', system_requirement %></td>
-        <td><%= link_to 'Edit', edit_system_requirement_path(system_requirement) %></td>
-        <td><%= link_to 'Destroy', system_requirement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l system_requirement.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_system_requirement_path(system_requirement), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      system_requirement_path(system_requirement),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New System requirement', new_system_requirement_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_system_requirement_path,
+            :class => 'btn btn-primary' %>
