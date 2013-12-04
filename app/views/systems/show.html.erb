@@ -4,12 +4,17 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:model_id) %>:</strong></dt>
-  <dd><%= @system.model_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @system.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:model_id) %>:</strong></dt>
+  <dd><%= @system.model.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:entity_id) %>:</strong></dt>
-  <dd><%= @system.entity_id %></dd>
+  <dd><%= @system.entity.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:properties) %>:</strong></dt>
+  <% @system.entity.properties.each do |prop| %>
+    <dd><%= prop.name %>
+  <% end %>
+
 </dl>
 
 <div class="form-actions">

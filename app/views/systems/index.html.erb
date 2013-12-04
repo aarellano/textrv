@@ -17,8 +17,8 @@
       <tr>
         <td><%= link_to system.id, system_path(system) %></td>
         <td><%= system.name %></td>
-        <td><%= system.model_id %></td>
-        <td><%= system.entity_id %></td>
+        <td><%= system.model.name %></td>
+        <td><%= system.entity.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_system_path(system), :class => 'btn btn-mini' %>
