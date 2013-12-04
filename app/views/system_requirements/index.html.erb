@@ -1,0 +1,31 @@
+<h1>Listing system_requirements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>System</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @system_requirements.each do |system_requirement| %>
+      <tr>
+        <td><%= system_requirement.title %></td>
+        <td><%= system_requirement.description %></td>
+        <td><%= system_requirement.system_id %></td>
+        <td><%= link_to 'Show', system_requirement %></td>
+        <td><%= link_to 'Edit', edit_system_requirement_path(system_requirement) %></td>
+        <td><%= link_to 'Destroy', system_requirement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New System requirement', new_system_requirement_path %>

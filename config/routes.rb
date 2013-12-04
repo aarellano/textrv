@@ -1,4 +1,8 @@
 Textrv::Application.routes.draw do
+  resources :system_requirements
+
+  get "system_requirements/update"
+  get "system_requirements/create"
   resources :systems
 
   resources :properties

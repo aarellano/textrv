@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @system_requirement.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @system_requirement.description %>
+</p>
+
+<p>
+  <strong>System:</strong>
+  <%= @system_requirement.system_id %>
+</p>
+
+<%= link_to 'Edit', edit_system_requirement_path(@system_requirement) %> |
+<%= link_to 'Back', system_requirements_path %>
