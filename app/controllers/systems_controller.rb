@@ -1,6 +1,11 @@
 class SystemsController < ApplicationController
   before_action :set_system, only: [:show, :edit, :update, :destroy]
 
+  def validate
+    logger.debug "Validating"
+    render nothing: true
+  end
+
   # GET /systems
   # GET /systems.json
   def index
