@@ -1,9 +1,16 @@
 class SystemsController < ApplicationController
-  before_action :set_system, only: [:show, :edit, :update, :destroy]
+  before_action :set_system, only: [:show, :edit, :update, :destroy, :validate, :analyze]
 
   def validate
     logger.debug "Validating"
-    render nothing: true
+    @system.validate
+    render "show"
+  end
+
+  def analyze
+    logger.debug "Analyzing"
+    @system.analyze
+    render "show"
   end
 
   # GET /systems

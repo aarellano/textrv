@@ -3,6 +3,7 @@ Textrv::Application.routes.draw do
 
   resources :systems do
     get 'validate', on: :member
+    get 'analyze', on: :member
   end
 
   resources :properties
