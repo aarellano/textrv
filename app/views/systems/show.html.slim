@@ -1,0 +1,37 @@
+- model_class = System
+
+.page-header
+  h1 = model_class.model_name.human.titleize
+
+dl.dl-horizontal
+  dt = model_class.human_attribute_name(:name)
+  dd = @system.name
+  dt = model_class.human_attribute_name(:model_id)
+  dd = @system.model.name
+  dt = model_class.human_attribute_name(:entity_id)
+  dd = @system.entity.name
+  dt = model_class.human_attribute_name(:properties)
+  - @system.entity.properties.each do |prop|
+    dd = prop.name
+  dt = model_class.human_attribute_name(:system_requirements)
+  - @system.system_requirements.each do |req|
+    dd = req.title
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), systems_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_system_path(@system), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")),
+    system_path(@system),
+    :method => 'delete',
+    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+    :class => 'btn btn-danger'
+  = link_to 'Analyze', analyze_system_path(@system), :class => 'btn btn-info'
+  = link_to 'Validate', validate_system_path(@system), :class => 'btn btn-success'
+
+- if @system.validated
+  = @system.validated
+  - @system.nouns.each do |noun|
+    p = noun
+
+- if @system.analyzed
+  = @system.analyzed
