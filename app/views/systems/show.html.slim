@@ -33,5 +33,22 @@ dl.dl-horizontal
   - @system.nouns.each do |noun|
     p = noun
 
-- if @system.analyzed
-  = @system.analyzed
+- if @system.analysis[:analyzed]
+  .span6
+    h3 Basic Properties
+    table.table.table-striped.table-bordered.table-hover
+      thead
+        <tr><th>Property</th><th>Value</th></tr>
+      tbody
+        - @system.analysis[:text_description].each do |key, value|
+          tr
+            td = model_class.human_attribute_name key
+            td = value
+    h3 Nouns
+    table.table.table-striped.table-bordered.table-hover
+      - @system.analysis[:nouns].each do |key, value|
+        tr
+          td = key
+          td
+            - value.each do |v|
+              span.noun = v
