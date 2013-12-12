@@ -13,10 +13,10 @@ class System < ActiveRecord::Base
   end
 
   def validate
-    logger.debug "model validate"
-    logger.debug %x(python scripts/test_script.py)
-    self.validated = true
-    self.nouns = ['dog', 'cat']
+    self.analyze
+    self.validation[:validated] = true
+    self.validation[:verified] = self.entity.properties_array & self.analysis[:all_nouns]
+    self.validation[:unverified] = self.entity.properties_array - self.analysis[:all_nouns]
   end
 
   def analyze
@@ -37,11 +37,13 @@ class System < ActiveRecord::Base
 
     output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.nouns("tmp/text_corpora.txt")')
     self.analysis[:nouns] = {}
+    self.analysis[:all_nouns] = []
     output.each_line do |line|
       out_array = line.delete("\n").split('=>')
       # The use of eval below is insanely dangerous. We're evaluating whatever we got from the python script.
       # Here we're trusting that we got an array
       self.analysis[:nouns][out_array[0]] = eval(out_array[1])
+      self.analysis[:all_nouns].concat eval(out_array[1])
     end
 
     self.analysis[:analyzed] = true

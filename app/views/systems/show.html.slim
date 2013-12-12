@@ -31,6 +31,17 @@ dl.dl-horizontal
 - if @system.validation[:validated]
   .span6
     h3 System Validation
+    table.table.table-striped.table-bordered.table-hover
+      tr
+        td Verified properties
+        td
+          - @system.validation[:verified].each do |v|
+            span.label.label-success.noun = v
+      tr
+        td Unverified properties
+        td
+          - @system.validation[:unverified].each do |v|
+            span.label.label-important.noun = v
 
 - if @system.analysis[:analyzed]
   .span6
@@ -43,11 +54,11 @@ dl.dl-horizontal
           tr
             td = model_class.human_attribute_name key
             td = value
-    h3 Nouns
+    h3 Objects
     table.table.table-striped.table-bordered.table-hover
       - @system.analysis[:nouns].each do |key, value|
         tr
           td = key
           td
             - value.each do |v|
-              span.noun = v
+              span.label.noun = v
