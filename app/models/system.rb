@@ -1,11 +1,16 @@
 class System < ActiveRecord::Base
-  attr_accessor :validated, :analysis
+  attr_accessor :validation, :analysis
 
   belongs_to :model
   belongs_to :entity
   has_many :system_requirements
 
   accepts_nested_attributes_for :system_requirements
+
+  after_initialize do |system|
+    system.validation = {}
+    system.analysis = {}
+  end
 
   def validate
     logger.debug "model validate"
@@ -15,8 +20,6 @@ class System < ActiveRecord::Base
   end
 
   def analyze
-    self.analysis = {}
-
     # Write to a temporary file all the system requirements. This file is read by the python script
     File.open('tmp/text_corpora.txt', 'w') do |f|
       self.system_requirements.each do |sys_req|
