@@ -28,10 +28,9 @@ dl.dl-horizontal
   = link_to 'Analyze', analyze_system_path(@system), :class => 'btn btn-info'
   = link_to 'Validate', validate_system_path(@system), :class => 'btn btn-success'
 
-- if @system.validated
-  = @system.validated
-  - @system.nouns.each do |noun|
-    p = noun
+- if @system.validation[:validated]
+  .span6
+    h3 System Validation
 
 - if @system.analysis[:analyzed]
   .span6
