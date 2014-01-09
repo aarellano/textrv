@@ -1,4 +1,6 @@
 Textrv::Application.routes.draw do
+
+  root to: 'systems#index'
   resources :system_requirements
 
   resources :systems do
