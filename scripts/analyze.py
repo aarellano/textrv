@@ -83,9 +83,10 @@ def chunks(file):
 
   cp = nltk.RegexpParser(grammar)
   result = cp.parse(tagged_tokens)
+  return result
 
-  print result
-  result.draw()
+  # print result
+  # result.draw()
 
 def findtags(tag_prefix, tagged_text):
   cfd = nltk.ConditionalFreqDist((tag, word) for (word, tag) in tagged_text if tag.startswith(tag_prefix))
