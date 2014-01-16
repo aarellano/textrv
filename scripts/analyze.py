@@ -44,6 +44,49 @@ def nouns(file):
   for tag in sorted(tagdict):
     print "%(tag)s=>%(words)s" % { "tag": tag, "words": tagdict[tag] }
 
+def wnl():
+  wnl = nltk.WordNetLemmatizer()
+
+  # The WNL works better when we specify the POS when calling the lemmatize method. Otherwise, it always
+  # reads the words as nouns. The thing is that i only knows four parts of speech (ADJ, ADV, NOUN, and VERB)
+  # so we need to handle it someway. Here I'm using a dictionary with the four recognized POS.
+  wordnet_tag = {'NN':'n','JJ':'a','VB':'v','RB':'r'}
+
+  wnl_stems = []
+  for t in tagged_tokens:
+    if t[1][:2] in wordnet_tag:
+      wnl_stems.append((wnl.lemmatize(t[0],wordnet_tag[t[1][:2]]), t[1]))
+    else:
+      wnl_stems.append((wnl.lemmatize(t[0]), t[1]))
+
+def chunks(file):
+  f = open(file)
+  raw = f.read()
+
+  tokens = nltk.word_tokenize(raw)
+
+  tagged_tokens = nltk.pos_tag(tokens)
+
+  grammar = "NP: {<JJ.*>*<NN.*>+}"
+
+  # Other possible grammars:
+
+  # grammar = "NP: {<DT>?<JJ.*>*<NN.*>+}"
+  # grammar = r"""
+  # NP: {<DT|PP\$>?<JJ>*<NN>} # chunk determiner/possessive, adjectives and nouns
+  # {<NNP>+} # chunk sequences of proper nouns
+  # """
+  # grammar = r"""
+  # NP: {<DT><NN.*><.*>*<NN>}
+  #     }<VB.*>{
+  # """
+
+  cp = nltk.RegexpParser(grammar)
+  result = cp.parse(tagged_tokens)
+
+  print result
+  result.draw()
+
 def findtags(tag_prefix, tagged_text):
   cfd = nltk.ConditionalFreqDist((tag, word) for (word, tag) in tagged_text if tag.startswith(tag_prefix))
   return dict((tag, cfd[tag].keys()) for tag in cfd.conditions())
