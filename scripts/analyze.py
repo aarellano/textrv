@@ -28,10 +28,10 @@ def basics(file):
   lancaster_stems = [lancaster.stem(t) for t in tokens]
   print "lancaster_stems=>%(len_stems)s" % {"len_stems": len(lancaster_stems)}
 
-  # wnl = nltk.WordNetLemmatizer()
+  wnl = nltk.WordNetLemmatizer()
 
-  # wnl_stems = [wnl.lemmatize(t) for t in tokens]
-  # print "WNL stems,%(len_stems)s" % {"len_stems": len(wnl_stems)}
+  wnl_stems = [wnl.lemmatize(t) for t in tokens]
+  print "WNL stems,%(len_stems)s" % {"len_stems": len(wnl_stems)}
 
 def nouns(file):
   f = open(file)
