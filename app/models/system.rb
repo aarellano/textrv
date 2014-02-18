@@ -35,7 +35,9 @@ class System < ActiveRecord::Base
       self.analysis[:text_description][out_array[0]] = out_array[1]
     end
 
-    output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.noun_phrases("tmp/text_corpora.txt")')
+    output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.nouns("tmp/text_corpora.txt")')
+    output.concat %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.noun_phrases("tmp/text_corpora.txt")')
+
     p output
     self.analysis[:nouns] = {}
     self.analysis[:all_nouns] = []

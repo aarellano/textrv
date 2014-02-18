@@ -74,7 +74,8 @@ def chunks(file):
 
   tagged_tokens = nltk.pos_tag(tokens)
 
-  grammar = "NP: {<JJ.*>*<NN.*>+}"
+  # The patter for this grammar is repeated twice in order to only find noun phrases with two or more words
+  grammar = "NP: {<JJ.*>*<NN.*>+ <JJ.*>*<NN.*>+}"
 
   # Other possible grammars:
 
