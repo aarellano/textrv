@@ -26,7 +26,7 @@ class System < ActiveRecord::Base
         f.puts sys_req.title
         f.puts sys_req.description
       end
-   end
+    end
 
     output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.basics("tmp/text_corpora.txt")')
     self.analysis[:text_description] = {}
@@ -35,7 +35,8 @@ class System < ActiveRecord::Base
       self.analysis[:text_description][out_array[0]] = out_array[1]
     end
 
-    output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.nouns("tmp/text_corpora.txt")')
+    output = %x(python -c 'import imp; analyzer = imp.load_source("analyze", "scripts/analyze.py"); analyzer.noun_phrases("tmp/text_corpora.txt")')
+    p output
     self.analysis[:nouns] = {}
     self.analysis[:all_nouns] = []
     output.each_line do |line|

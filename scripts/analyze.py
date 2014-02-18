@@ -82,11 +82,24 @@ def chunks(file):
   # """
 
   cp = nltk.RegexpParser(grammar)
-  result = cp.parse(tagged_tokens)
-  return result
+  chunks_tree = cp.parse(tagged_tokens)
 
-  # print result
-  # result.draw()
+  # The result from the chunk parser is a tree. Here I'm finding all the Noun Phrases subtrees,
+  # flattening them into lists, and converting those lists to tuples. This way we end up with the
+  # same data structure that we get from pos_tag()
+  np_subtrees = list(chunks_tree.subtrees(filter=lambda x: x.node=='NP'))
+  flatten_np_subtrees = [tuple(nltk.flatten(t)) for t in np_subtrees]
+
+  result = []
+  for item in flatten_np_subtrees:
+    noun_phrase = ''
+    for n in range(len(item)):
+      if n % 2 == 0:
+        noun_phrase += item[n]
+        noun_phrase += ' '
+    result.append((noun_phrase.rstrip(), 'NP'))
+
+  return result
 
 def findtags(tag_prefix, tagged_text):
   cfd = nltk.ConditionalFreqDist((tag, word) for (word, tag) in tagged_text if tag.startswith(tag_prefix))
