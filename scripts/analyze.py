@@ -44,11 +44,18 @@ def nouns(file):
   for tag in sorted(tagdict):
     print "%(tag)s=>%(words)s" % { "tag": tag, "words": tagdict[tag] }
 
+def noun_phrases(file):
+  chunks_tree = chunks(file)
+
+  tagdict = findtags('NP', chunks_tree)
+  for tag in sorted(tagdict):
+    print "%(tag)s=>%(words)s" % { "tag": tag, "words": tagdict[tag] }
+
 def wnl():
   wnl = nltk.WordNetLemmatizer()
 
   # The WNL works better when we specify the POS when calling the lemmatize method. Otherwise, it always
-  # reads the words as nouns. The thing is that i only knows four parts of speech (ADJ, ADV, NOUN, and VERB)
+  # reads the words as nouns. The thing is that it only knows four parts of speech (ADJ, ADV, NOUN, and VERB)
   # so we need to handle it someway. Here I'm using a dictionary with the four recognized POS.
   wordnet_tag = {'NN':'n','JJ':'a','VB':'v','RB':'r'}
 
