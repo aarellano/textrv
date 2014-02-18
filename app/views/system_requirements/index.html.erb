@@ -9,7 +9,6 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:system_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -20,7 +19,6 @@
         <td><%= system_requirement.title %></td>
         <td><%= system_requirement.description %></td>
         <td><%= system_requirement.system_id %></td>
-        <td><%=l system_requirement.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_system_requirement_path(system_requirement), :class => 'btn btn-mini' %>
